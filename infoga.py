@@ -116,17 +116,27 @@ def infget():
         print('not working yet in this verssion')
     twitter()    
 
-
+def found():
+    mFram.destroy()
+    secFram = Frame(window,bg='#ffffff')
+    secFram.place(height=280,width=600)
+    textElm = Text(secFram)
+    textElm.place(x=0,y=0)
+    textElm.insert(END,f"ACCONT LINC [fb] {fcebook().titleOf}:")
 
 # -----------------------------------------------------------------------------------------------------------------#
 
+# main fram
+mFram = Frame(window,bg='#000000')
+mFram.place(height=300,width=600)
+
 # top label for search message
 
-searchLabel= Label(window,text='search',fg='white',bg='black').pack(side='top', pady= 10)
+searchLabel= Label(mFram,text='search',fg='white',bg='black').pack(side='top', pady= 10)
 
 # info entry
 
-infoEntry = Entry(window,border=0, bg='white',width=30)
+infoEntry = Entry(mFram,border=0, bg='white',width=30)
 infoEntry.pack()
 
 # check button
@@ -134,16 +144,22 @@ infoEntry.pack()
 ivone = IntVar()
 ivtwo = IntVar()
 ivtree = IntVar()
-fb = Checkbutton(window,text='facebook',bg='black',fg='#0165E1',font=myFont,variable=ivone)
+fb = Checkbutton(mFram,text='facebook',bg='black',fg='#0165E1',font=myFont,variable=ivone)
 fb.place(x=100,y=100)
-istg = Checkbutton(window,text='instgram',bg='black',fg='#FCAF45',font=myFont,variable=ivtwo)
+istg = Checkbutton(mFram,text='instgram',bg='black',fg='#FCAF45',font=myFont,variable=ivtwo)
 istg.place(x=250,y=100)
-x = Checkbutton(window,text='twitter',bg='black',fg='#1D9BF0',font=myFont, variable=ivtree )
+x = Checkbutton(mFram,text='twitter',bg='black',fg='#1D9BF0',font=myFont, variable=ivtree )
 x.place(x=400,y=100)
 
 # click button for search about the target
 
-mainClickBtn = Button(window,text='click',fg='black', bg='red',font=myFont,bd=False,command=infget)
+mainClickBtn = Button(mFram,text='click',fg='black', bg='red',font=myFont,bd=False,command=infget)
 mainClickBtn.place(x=240,y=180,width=100)
+
+# down button
+downBtn = Button(mFram,text='down',fg='black', bg='red',font=myFont,bd=False,command=found)
+downBtn.place(x=480,y=250,width=100)
+
+
 
 window.mainloop()
