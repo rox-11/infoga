@@ -9,8 +9,7 @@
 # 
 # snom info gatharinct tool V 1.0
 # sample version 
-# version 1.1 gools:
-#       * add ttk.treeview as terminal to show info 
+# version 1.1 gools: 
 #       * add more and exact info li (addres , phone, email ...)
 #       * add tool user password in requests to have more accses to info
 
@@ -18,7 +17,6 @@
 
 
 from tkinter import *
-from PIL import Image
 from tkinter import messagebox
 from bs4 import BeautifulSoup as bs
 import requests
@@ -26,22 +24,64 @@ from tkinter import ttk
 
 
 
-window = Tk()
-window.config(bg='black')
-window.geometry('600x300')
+
 
 # varaibles
 
-myFont= ('tajawal',11,'bold')
+myFont= ('times',11,'bold')
 
 
 #-------------------------------------------------------------------------------------------#
 
 #fonctions
+def undo():
+    
+   
+    mFram.place(height=300,width=600)
+    # secFram.place(x=1000)
+    secFram.pack(side='bottom',fill="none",expand=False)
+   
+
+
+
+def found():
+    window.configure(bg='#ffffff')
+    backBtn = Button(secFram,text='back',fg='black', bg='red',font=myFont,bd=False,command=undo)
+    backBtn.place(x=480,y=250,width=100)
+
+    global a
+    a = mFram.pack_forget()
+    secFram.place(height=300,width=600)
+    try:
+        if igtitle == 'Instgram' :
+            textElm.insert('end',' >> ACCONT LINC [ig]: not found \n', )
+        
+        else:
+            
+            textElm.insert('end',' >> ACCONT LINC [ig]:', 'orange')
+            textElm.insert('end',f'{igtitle} \n')
+    except:
+        pass
+    try:
+
+        if fbtitle == 'Facebook':
+            textElm.insert('end',' >> ACCONT LINC [fb]: not found \n')
+        
+        else:
+            
+            textElm.insert('end',' >> ACCONT LINC [fb]:', 'blue')
+            textElm.insert('end',f'{fbtitle} \n')
+    except:
+        pass
+
+
+
+    
+
+    
 
 def infget():
 
-    # upload the imoprt element
 
     name = infoEntry.get()
     fbCheck = ivone.get()
@@ -55,18 +95,22 @@ def infget():
             facebookUrl = 'https://www.facebook.com/'
             request = requests.get(facebookUrl+name)
             soup = bs(request.content,'html.parser')
+            global fbtitle
             title1 = soup.find('title')
-            titleOf = title1.string
+            fbtitle = title1.string
 
-            if titleOf == 'Facebook':
-                    messagebox.showwarning(title='notfound', message='notfound')
-            else:
-                    print(f"facebook",titleOf)
+            # if fbtitle == 'Facebook':
+            #         messagebox.showwarning(title='notfound', message='notfound')
+            # else:
+            #         print(f"facebook",titleOf)
 
+                     
+                    
         else:
         
                 pass
             # ----------------------------
+        
     
     facebook()
 
@@ -79,13 +123,15 @@ def infget():
         #     https://www.instagram.com/   
             request = requests.get(instgramUrl+name)
             soup = bs(request.content,'html.parser')
+            global igtitle
             title1 = soup.find('title')
-            titleOf = title1.string
+            igtitle = title1.string
 
-            if titleOf == 'Instagram':
-                    messagebox.showwarning(title='notfound', message='notfound')
-            else:
-                    print(f"instgrame",titleOf)
+            # if titleOf == 'Instagram':
+            #         messagebox.showwarning(title='notfound', message='notfound')
+            # else:
+            #         print(f"instgrame",titleOf)
+                    
                     
         else:
         
@@ -96,37 +142,20 @@ def infget():
                 #-----------------------------
     def twitter():
 
-        # if xCheck == 1:
-    
-        #     twitterUrl = ''   
-        #     request = requests.get(twitterUrl)
-        #     soup = bs(request.content,"lxml")
-        #     title1 = soup.find('title')
-        #     ti = soup.find_all("div", {})
-        #     titleOf = title1.string
-        #     print(ti)
-        #     if titleOf == 'twitter':
-        #             messagebox.showwarning(title='notfound', message='notfound')
-        #     else:
-        #             print(f"twitter",titleOf)
-                    
-        # else:
-        
-        #     messagebox.showwarning(title='twitter error', message='errer')
-        print('not working yet in this verssion')
-    twitter()    
 
-def found():
-    mFram.destroy()
-    secFram = Frame(window,bg='#ffffff')
-    secFram.place(height=280,width=600)
-    textElm = Text(secFram)
-    textElm.place(x=0,y=0)
-    textElm.insert(END,f"ACCONT LINC [fb] {fcebook().titleOf}:")
+        print('not working yet in this verssion')
+    # twitter()    
+
 
 # -----------------------------------------------------------------------------------------------------------------#
 
+
+window = Tk()
+window.config(bg='black')
+window.geometry('600x300')
+
 # main fram
+
 mFram = Frame(window,bg='#000000')
 mFram.place(height=300,width=600)
 
@@ -157,9 +186,33 @@ mainClickBtn = Button(mFram,text='click',fg='black', bg='red',font=myFont,bd=Fal
 mainClickBtn.place(x=240,y=180,width=100)
 
 # down button
+
 downBtn = Button(mFram,text='down',fg='black', bg='red',font=myFont,bd=False,command=found)
 downBtn.place(x=480,y=250,width=100)
 
+# second frame
+secFram = Frame(window,bg='#ffffff')
+secFram.pack_forget()
 
+# text field
+
+textElm = Text(secFram)
+textElm.tag_config('blue',background='blue',foreground='white')    
+textElm.tag_config('orange',background='orange',foreground='white')
+textElm.tag_config('red',foreground='red')
+textElm.insert('end','''
+   _____    __    __   ______    __     __
+  /   . \  /  \  /  \ /      \  /  \   /  \   configured by (@snom)
+  |  ___/`~|   \ |  | |  []  |  |   \ /   |
+  | |____  |  \ \|  | |  ||  |  |         |
+  |____  | |  |\    | |  ||  |  |  |\_/|  |
+   ____| | |  | \   | |  []  |  |  |   |  |
+  |______| \__/  \__/ \______/  \__/   \__/ \n''','red')
+textElm.insert('end','\n')
+
+textElm.place(x=0,y=0)
+scr = Scrollbar(secFram,orient="vertical",command=textElm.yview)
+scr.pack(side='right',fill='y')
+textElm.config(yscrollcommand=scr.set)
 
 window.mainloop()
