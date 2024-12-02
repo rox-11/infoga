@@ -23,9 +23,6 @@ import requests
 from tkinter import ttk
 
 
-
-
-
 # varaibles
 
 myFont= ('times',11,'bold')
@@ -36,13 +33,9 @@ myFont= ('times',11,'bold')
 #fonctions
 def undo():
     
-   
     mFram.place(height=300,width=600)
-    # secFram.place(x=1000)
     secFram.pack(side='bottom',fill="none",expand=False)
    
-
-
 
 def found():
     window.configure(bg='#ffffff')
@@ -73,12 +66,7 @@ def found():
             textElm.insert('end',f'{fbtitle} \n')
     except:
         pass
-
-
-
-    
-
-    
+ 
 
 def infget():
 
@@ -98,20 +86,10 @@ def infget():
             global fbtitle
             title1 = soup.find('title')
             fbtitle = title1.string
-
-            # if fbtitle == 'Facebook':
-            #         messagebox.showwarning(title='notfound', message='notfound')
-            # else:
-            #         print(f"facebook",titleOf)
-
-                     
-                    
+                                         
         else:
         
                 pass
-            # ----------------------------
-        
-    
     facebook()
 
 
@@ -120,31 +98,21 @@ def infget():
         if istgCheck == 1:
     
             instgramUrl = 'https://www.instagram.com/'
-        #     https://www.instagram.com/   
             request = requests.get(instgramUrl+name)
             soup = bs(request.content,'html.parser')
             global igtitle
             title1 = soup.find('title')
-            igtitle = title1.string
-
-            # if titleOf == 'Instagram':
-            #         messagebox.showwarning(title='notfound', message='notfound')
-            # else:
-            #         print(f"instgrame",titleOf)
+            igtitle = title1.string        
                     
-                    
-        else:
-        
-        #     
+        else: 
                 pass
     instgrame()
 
                 #-----------------------------
     def twitter():
 
-
         print('not working yet in this verssion')
-    # twitter()    
+   
 
 
 # -----------------------------------------------------------------------------------------------------------------#
@@ -208,9 +176,10 @@ textElm.insert('end','''
   |____  | |  |\    | |  ||  |  |  |\_/|  |
    ____| | |  | \   | |  []  |  |  |   |  |
   |______| \__/  \__/ \______/  \__/   \__/ \n''','red')
-textElm.insert('end','\n')
 
+textElm.insert('end','\n')
 textElm.place(x=0,y=0)
+# scroolbar
 scr = Scrollbar(secFram,orient="vertical",command=textElm.yview)
 scr.pack(side='right',fill='y')
 textElm.config(yscrollcommand=scr.set)

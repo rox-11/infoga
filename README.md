@@ -7,11 +7,13 @@ Infoga
 * Find a person by just name 
 * Get info in defrent social media platforms 
 * Simple in using
-* check about if the accont exist
+* check about if the account exest
 
 ## Installation
 
 ```bash
+$ pip3 install -r requirements.txt
+
 $ pip3 install beautifulSoup requests tkinter
 ```
 

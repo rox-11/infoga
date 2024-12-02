@@ -1,0 +1,6 @@
+# installing
+
+
+requests
+beautifulsoup
+tkinter
