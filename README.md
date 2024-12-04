@@ -16,4 +16,7 @@ $ pip3 install -r requirements.txt
 
 $ pip3 install beautifulSoup requests tkinter
 ```
+## usage
+![img](img/one.png)
 
+![img](img/two.png)
