@@ -21,7 +21,7 @@ from tkinter import messagebox
 from bs4 import BeautifulSoup as bs
 import requests
 from tkinter import ttk
-
+import re
 
 # varaibles
 
@@ -79,12 +79,14 @@ def infget():
     def facebook():
 
         if fbCheck == 1:
-            
+            regular = re.sub(r"\s","-", name)
+            print(regular)
             facebookUrl = 'https://www.facebook.com/'
-            request = requests.get(facebookUrl+name)
+            request = requests.get(facebookUrl+regular)
             soup = bs(request.content,'html.parser')
             global fbtitle
             title1 = soup.find('title')
+            print(title1)
             fbtitle = title1.string
                                          
         else:
